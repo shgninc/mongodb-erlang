@@ -113,11 +113,17 @@ map(Fun, Cursor, Max) ->
 close(Cursor) ->
   gen_server:cast(Cursor, halt).
 
-start_link(Connection, Collection, Cursor, BatchSize, Batch) ->
-  gen_server:start_link(?MODULE, [self(), Connection, Collection, Cursor, BatchSize, Batch,undefined], []).
-start_link(Connection, Collection, Cursor, BatchSize, Batch, DB) ->
-  gen_server:start_link(?MODULE, [self(), Connection, Collection, Cursor, BatchSize, Batch,DB], []).
+%%start_link(Connection, Collection, Cursor, BatchSize, Batch) ->
+%%  gen_server:start_link(?MODULE, [self(), Connection, Collection, Cursor, BatchSize, Batch,undefined], []).
+%%start_link(Connection, Collection, Cursor, BatchSize, Batch, DB) ->
+%% gen_server:start_link(?MODULE, [self(), Connection, Collection, Cursor, BatchSize, Batch,DB], []).
 
+%% BY SHGN
+start_link(Connection, Collection, Cursor, BatchSize, Batch) ->
+  gen_server:start_link(?MODULE, [self(), Connection, Collection, Cursor, BatchSize, Batch], []).
+start(Connection, Collection, Cursor, BatchSize, Batch) ->
+    gen_server:start(?MODULE, [self(), Connection, Collection, Cursor, BatchSize, Batch], []).
+%% BY SHGN
 
 %% @hidden
 init([Owner, Connection, Collection, Cursor, BatchSize, Batch,DB]) ->
