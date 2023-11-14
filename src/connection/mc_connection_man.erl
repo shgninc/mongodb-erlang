@@ -29,7 +29,8 @@ read(Connection, Request = #'query'{collection = Collection, batchsize = BatchSi
     {_, []} ->
       [];
     {Cursor, Batch} ->
-      mc_cursor:start_link(Connection, Collection, Cursor, select_batchsize(CmdBatchSize, BatchSize), Batch, DB)
+      %% mc_cursor:start_link(Connection, Collection, Cursor, select_batchsize(CmdBatchSize, BatchSize), Batch, DB)
+      mc_cursor:start(Connection, Collection, Cursor, select_batchsize(CmdBatchSize, BatchSize), Batch)
   end.
   
 
